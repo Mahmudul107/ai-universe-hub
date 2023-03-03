@@ -1,23 +1,49 @@
-*{
-    font-family: 'Work Sans', sans-serif;  
+* {
+    font-family: 'Work Sans', sans-serif;
 }
-.features{
+
+.features {
     /* font-size: 12px; */
 }
-.feature-name{
+
+.feature-name {
     font-size: 18px;
     /* margin-bottom: 20px; */
 }
-.fav-icon{
+
+.fav-icon {
     font-SIZE: 13px;
 }
-.arrow{
+
+.arrow {
     background-color: rgb(255, 215, 215);
     padding: 15px;
     margin-left: 160px;
     margin-bottom: px;
     border: none;
 }
-.arrow:hover{
+
+.arrow:hover {
+    color: red;
+}
+
+.arrowDetailModal{
+    background: rgba(235, 87, 87, 0.05);
+border: 1px solid #EB5757;
+border-radius: 16px;
+}
+.green {
+    color: green;
+    width: 131px;
+    height: 100px;
+    background: #FFFFFF;
+    border-radius: 16px;
+}
+
+.orange {
+    color: orange;
+}
+
+.red {
     color: red;
 }
