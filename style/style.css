@@ -1,3 +1,23 @@
 *{
     font-family: 'Work Sans', sans-serif;  
 }
+.features{
+    /* font-size: 12px; */
+}
+.feature-name{
+    font-size: 18px;
+    /* margin-bottom: 20px; */
+}
+.fav-icon{
+    font-SIZE: 13px;
+}
+.arrow{
+    background-color: rgb(255, 215, 215);
+    padding: 15px;
+    margin-left: 160px;
+    margin-bottom: px;
+    border: none;
+}
+.arrow:hover{
+    color: red;
+}
