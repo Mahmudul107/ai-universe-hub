@@ -116,3 +116,11 @@ border-radius: 16px;
     border-radius: 10px;
 
 }
+
+.btn-accuracy {
+    width: 140px;
+    height: 32px;
+    position: absolute;
+    left: 900px;
+    top: 108px;
+}

@@ -76,6 +76,9 @@ displayDetails = details => {
     console.log(details);
     const detailsContainer = document.getElementById('details-container');
     detailsContainer.classList.add('col');
+
+    // Multiply accuracy with 100
+    const accuracyScore = details.accuracy.score * 100;
     detailsContainer.innerHTML = `
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="d-flex g-5">
@@ -107,17 +110,24 @@ displayDetails = details => {
                     </div>
                 </div>
             </div>
-            <div class="image-section ps-5 ">
-                <div>
+            <div class=" image-section ps-5 ">
+                <div class=""> 
                     <img class="details-image" src="${details.image_link[0]}" alt="">
                 </div>
-                <div>
-                    
+                <div  class="">
+                    <p>${details.input_output_examples[0].input}</p>
                 </div>
+                    
+                    <p>${details.input_output_examples[1].output}</p>
+                <div>
+                </div>
+                    <button id="accuracy-button" class="btn-accuracy btn btn-danger">${accuracyScore}% accuracy</button>
             </div>
         </div>
         
     `
 
 }
+
+
 // showDetails();
