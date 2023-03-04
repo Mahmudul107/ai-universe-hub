@@ -100,15 +100,14 @@ displayDetails = details => {
     const detailsContainer = document.getElementById('details-container');
     detailsContainer.classList.add('col');
 
-    // Integrations
-    // integrations.forEach(integration => {
-    //     const data = getDataFromIntegration(integration);
-    //     console.log(data ? data : "no data found");
-    //   });
-
 
     // Multiply accuracy with 100
     const accuracyScore = details.accuracy.score * 100;
+
+    // Set the button to disabled if the accuracy score is not available
+    if (accuracyScore) {
+        accuracyButton = `<button id="accuracy-button" class="btn-accuracy btn btn-danger">${accuracyScore}% accuracy</button>`;
+    }
     detailsContainer.innerHTML = `
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="d-flex justify-content-between g-5">
@@ -150,7 +149,7 @@ displayDetails = details => {
             
                     </div>
                     </div>
-                        <button id="accuracy-button" id="accuracy-button" class="btn-accuracy btn btn-danger">${accuracyScore ? accuracyScore : 'No Accuracy'}% accuracy</button>
+                    ${accuracyButton}
                     </div>
                 </div>
             </div>
