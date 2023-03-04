@@ -3,19 +3,33 @@ const loadFeatures = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
-    displayFeatures(data.data.tools);
+    displayFeatures(data.data.tools.slice(0,6));
 }
+
+// function compareByDate(a, b) {
+//     const dateA = new Date(a.published_in);
+//     const dateB = new Date(b.published_in);
+//     return dateA - dateB;
+// }
 
 const displayFeatures = features => {
     const featuresContainer = document.getElementById('features-container');
-    // featuresContainer.textContent = '';
+    featuresContainer.innerHTML = '';
+    
+    // Sorted data
+    // const sortByDate = document.getElementById("sort-button").addEventListener('click', function(){
+    //     features.sort(compareByDate);
+    //     // Display the sorted features on the page
+    //     // ...
+    //   });
 
     // slice feature with 6 items
-    const seeMore = document.getElementById('see-more-section');
-    if (features.length > 6) {
-        features = features.slice(0, 6);
-        seeMore.classList.remove('d-none');
-    }
+    // const seeMore = document.getElementById('see-more-section');
+    // if (features.length > 6) {
+    //     features = features;
+    //     seeMore.classList.remove('d-none');
+    // }
+
 
     features.forEach(feature => {
         const featureDiv = document.createElement('div');
@@ -56,7 +70,13 @@ const toggleSpinner = isLoading => {
 
 // Add click handler with button See More
 const restItem = document.getElementById('see-more-btn').addEventListener('click', function () {
-    // loadFeatures();
+    const loadFeatures = async () => {
+        const url = `https://openapi.programming-hero.com/api/ai/tools`
+        const res = await fetch(url);
+        const data = await res.json();
+        displayFeatures(data.data.tools);
+    }
+    loadFeatures();
 })
 
 // Start spinner
@@ -77,11 +97,18 @@ displayDetails = details => {
     const detailsContainer = document.getElementById('details-container');
     detailsContainer.classList.add('col');
 
+    // Integrations
+    // integrations.forEach(integration => {
+    //     const data = getDataFromIntegration(integration);
+    //     console.log(data ? data : "no data found");
+    //   });
+      
+
     // Multiply accuracy with 100
     const accuracyScore = details.accuracy.score * 100;
     detailsContainer.innerHTML = `
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="d-flex g-5">
+        <div class="d-flex justify-content-between g-5">
             <div class="details-section-container container ps-5">
                 <h1 class="details-description">${details.description}</h1>
                 <div class="d-flex gap-5">
@@ -110,18 +137,18 @@ displayDetails = details => {
                     </div>
                 </div>
             </div>
-            <div class=" image-section ps-5 ">
-                <div class=""> 
-                    <img class="details-image" src="${details.image_link[0]}" alt="">
+            <div class="detail-image">
+                <div class="card" style="width: 18rem;">
+                    <img src="${details.image_link[0]}" class="card-img-top" alt="...">
+                    <div class="input-text">
+                        <p class="card-text">${details.input_output_examples[0].input}</p>
+                        <p class="card-text">${details.input_output_examples[1].input}</p>
+            
+                    </div>
+                    </div>
+                        <button id="accuracy-button" class="btn-accuracy btn btn-danger">${accuracyScore ? accuracyScore : 'No Accuracy'}% accuracy</button>
+                    </div>
                 </div>
-                <div  class="">
-                    <p>${details.input_output_examples[0].input}</p>
-                </div>
-                    
-                    <p>${details.input_output_examples[1].output}</p>
-                <div>
-                </div>
-                    <button id="accuracy-button" class="btn-accuracy btn btn-danger">${accuracyScore}% accuracy</button>
             </div>
         </div>
         

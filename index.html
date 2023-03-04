@@ -24,7 +24,7 @@
     <main>
         <section class="d-flex justify-content-center">
             <button style="width: 130px; height: 45px; border-radius: 12px;" type="button"
-                class="btn btn-danger mt-2">Sort By Date</button>
+                class="btn btn-danger mt-2" id="sort-button">Sort By Date</button>
         </section>
 
         <section class="container mt-4">
@@ -35,8 +35,8 @@
 
         <!-- See more Section -->
         <section>
-            <div id="see-more-section" class="d-flex justify-content-center align-items-center py-4 d-none">
-                <button id="see-more-btn" style="width: 130px; height: 45px; border-radius: 12px;"
+            <div id="see-more-section" class="d-flex justify-content-center align-items-center py-4">
+                <button onclick="showAllData()" id="see-more-btn" style="width: 130px; height: 45px; border-radius: 12px;"
                     class="btn btn-danger mt-2">See More</button>
             </div>
         </section>
