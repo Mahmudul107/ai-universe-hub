@@ -138,7 +138,7 @@ displayDetails = details => {
                 </div>
             </div>
             <div class="detail-image">
-                <div class="card" style="width: 18rem;">
+                <div class="" style="width: 18rem;">
                     <img src="${details.image_link[0]}" class="card-img-top" alt="...">
                     <div class="input-text">
                         <p class="card-text">${details.input_output_examples[0].input}</p>

@@ -100,6 +100,7 @@ border-radius: 16px;
 /* Right section */
 
 .detail-image{
+    padding-left: 20px;
     width: 487px;
     height: 511px;
     left: 797px;
@@ -134,6 +135,12 @@ border-radius: 16px;
     left: 860px;
     top: 108px;
 }
-/* .input-text{
+.input-text{
+    padding-left: 100px;
+    text-align: center;
+}
 
-} */
+/* Button close */
+.btn-close{
+    background-color: #EB5757 !important;
+}
