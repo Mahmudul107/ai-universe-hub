@@ -3,35 +3,38 @@ const loadFeatures = async () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
-    displayFeatures(data.data.tools.slice(0,6));
+    displayFeatures(data.data.tools.slice(0, 6));
 }
 
-// function compareByDate(a, b) {
-//     const dateA = new Date(a.published_in);
-//     const dateB = new Date(b.published_in);
-//     return dateA - dateB;
-// }
+function compareByDate(a, b) {
+    const dateA = new Date(a.published_in);
+    const dateB = new Date(b.published_in);
+    return dateA - dateB;
+}
 
 const displayFeatures = features => {
     const featuresContainer = document.getElementById('features-container');
     featuresContainer.innerHTML = '';
-    
-    // Sorted data
-    // const sortByDate = document.getElementById("sort-button").addEventListener('click', function(){
-    //     features.sort(compareByDate);
-    //     // Display the sorted features on the page
-    //     // ...
-    //   });
 
+    // Sorted data
+    const sortByDate = () => {
+        features.sort(compareByDate);
+        displayFeatures(features);
+    };
+
+    // Add event listener to the sort button
+    const sortButton = document.getElementById("sort-button");
+    sortButton.addEventListener('click', sortByDate);
+    
     // slice feature with 6 items
     // const seeMore = document.getElementById('see-more-section');
     // if (features.length > 6) {
-    //     features = features;
-    //     seeMore.classList.remove('d-none');
-    // }
-
-
-    features.forEach(feature => {
+        //     features = features;
+        //     seeMore.classList.remove('d-none');
+        // }
+        
+        
+        features.forEach(feature => {
         const featureDiv = document.createElement('div');
         featureDiv.classList.add('col');
         featureDiv.innerHTML = `
@@ -102,7 +105,7 @@ displayDetails = details => {
     //     const data = getDataFromIntegration(integration);
     //     console.log(data ? data : "no data found");
     //   });
-      
+
 
     // Multiply accuracy with 100
     const accuracyScore = details.accuracy.score * 100;
@@ -110,11 +113,11 @@ displayDetails = details => {
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="d-flex justify-content-between g-5">
             <div class="details-section-container container ps-5">
-                <h1 class="details-description">${details.description}</h1>
+                <h1 class="details-description">${details ? details.description : ''}</h1>
                 <div class="d-flex gap-5">
-                    <p class="green">${details.pricing[0].price}</p>
-                    <p class="orange">${details.pricing[1].price}</p>
-                    <p class="red">${details.pricing[2].price}</p>
+                    <p class="green">${details.pricing ? details.pricing[0].price : 'free of cost'}</p>
+                    <p class="green">${details.pricing ? details.pricing[1].price : 'free of cost'}</p>
+                    <p class="green">${details.pricing ? details.pricing[2].price : 'free of cost'}</p>
                 </div>
                 <div class="container px-5 d-flex gap-5 justify-content-between">
                     <p>Features</p>
@@ -130,9 +133,10 @@ displayDetails = details => {
                     </div>
                     <div>
                         <ul>
-                            <li>${details.integrations[0]}</li>
-                            <li>${details.integrations[1]}</li>
-                            <li>${details.integrations[2]}</li>
+                            <li>${details.integrations ? details.integrations[0] : 'No data found'}</li>
+                            <li>${details.integrations ? details.integrations[1] : 'No data found'}</li>
+                            <li>${details.integrations ? details.integrations[2] : 'No data found'}</li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -140,13 +144,13 @@ displayDetails = details => {
             <div class="detail-image">
                 <div class="" style="width: 18rem;">
                     <img src="${details.image_link[0]}" class="card-img-top" alt="...">
-                    <div class="input-text">
+                    <div class="input-text d-inline-block">
                         <p class="card-text">${details.input_output_examples[0].input}</p>
-                        <p class="card-text">${details.input_output_examples[1].input}</p>
+                        <p class="card-text d-inline-block">${details.input_output_examples ? details.input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
             
                     </div>
                     </div>
-                        <button id="accuracy-button" class="btn-accuracy btn btn-danger">${accuracyScore ? accuracyScore : 'No Accuracy'}% accuracy</button>
+                        <button id="accuracy-button" id="accuracy-button" class="btn-accuracy btn btn-danger">${accuracyScore ? accuracyScore : 'No Accuracy'}% accuracy</button>
                     </div>
                 </div>
             </div>
